@@ -1,10 +1,20 @@
 var SimpleHistogram = function(container, opts) {
 
-  var NUMBER_OF_BINS = (opts) ? ((opts.bins) ? opts.bins : 20) : 20,
+  var getOpt = function(key, defaultVal) {
+        return (opts) ? ((opts[key]) ? opts[key] : defaultVal) : defaultVal;
+      },
 
-      BIN_WIDTH = Math.floor(jQuery(container).innerWidth() / NUMBER_OF_BINS),
+      NUMBER_OF_BINS = getOpt('bins', 20),
 
-      data = (opts) ? ((opts.data) ? opts.data : []) : [],
+      ALIGN = getOpt('align', 'bottom'),
+
+      ORIENTATION = (ALIGN === 'bottom') ? 'landscape' : 'portrait',
+
+      BIN_WIDTH = (ORIENTATION === 'landscape') ?
+        Math.floor(jQuery(container).innerWidth() / NUMBER_OF_BINS) :
+        Math.floor(jQuery(container).innerHeight() / NUMBER_OF_BINS),
+
+      data = getOpt('data', []),
 
       containerEl = jQuery(container),
 
@@ -50,13 +60,17 @@ var SimpleHistogram = function(container, opts) {
       /** Renders the histogram into the parent DOM element **/
       render = function(data) {
         var resampled = resample(data, NUMBER_OF_BINS),
-            maxY = Math.max.apply(null, jQuery.map(resampled.bins, function(val) { return val.y; }));
+            maxY = Math.max.apply(null, jQuery.map(resampled.bins, function(val) { return val.y; })),
+            fixedDimension = (ORIENTATION === 'landscape') ? 'width' : 'height',
+            varDimension = (ORIENTATION === 'landscape') ? 'height' : 'width';
 
         containerEl.empty();
         jQuery.each(resampled.bins, function(idx, bin) {
-          var height = bin.y / maxY * 100,
-              html = '<div class="histogram column" style="width:' + BIN_WIDTH + 'px" data-x="' + bin.x + '">' +
-                     '  <div class="histogram bar" style="height: ' + height + '%"></div>' +
+          var len = bin.y / maxY * 100,
+              html = '<div class="histogram column ' + ALIGN + ' ' + ORIENTATION + '" style="' +
+                       fixedDimension + ':' + BIN_WIDTH + 'px" data-x="' + bin.x + '">' +
+                       '<div class="histogram bar" style="' + varDimension + ': ' + len + '%">' +
+                       '</div>' +
                      '</div>';
 
           containerEl.append(html);

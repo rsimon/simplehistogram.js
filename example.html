@@ -31,6 +31,7 @@
       }
 
       #usage code {
+        line-height:140%;
         padding:15px 20px;
         border-radius:5px;
       }
@@ -50,9 +51,9 @@
 
       jQuery(document).ready(function() {
         var histogram = new SimpleHistogram(document.getElementById('histogram'), {
-          data: randomData,
-          bins: 40
-        });
+              data: randomData,
+              bins: 40
+            });
       });
 
       hljs.initHighlightingOnLoad();
@@ -72,12 +73,16 @@
 
   new SimpleHistogram(document.getElementById('histogram'), {
 
-    data: data, // array of objects { x: ..., y: ... }
+    // Array of objects { x: ..., y: ... }
+    data: data,
 
-    bins: 40,   // number of bins
+    // Number of bars to display
+    bins: 40,
 
-    // More to come
-    
+    // OPTIONAL
+    // 'bottom' (default) or 'left', 'right' for vertical alignment
+    align: 'bottom'
+
   });
 
 });</pre></code>

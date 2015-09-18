@@ -1,10 +1,18 @@
 div.histogram.column {
-  height:100%;
-  display:inline-block;
-  padding:0 2px;
   box-sizing:border-box;
   border:1px solid transparent;
   position:relative;
+}
+
+div.histogram.column.landscape {
+  height:100%;
+  display:inline-block;
+  padding:0 2px;
+}
+
+div.histogram.column.portrait {
+  width:100%;
+  padding:2px 0;
 }
 
 div.histogram.column:hover .bar {
@@ -12,11 +20,25 @@ div.histogram.column:hover .bar {
   background-color:#fff;
 }
 
-div.histogram.bar {
+div.histogram.column .bar {
   position:absolute;
+  border:1px solid rgba(255,255,255,0.7);
+  background-color:rgba(255,255,255,0.5);
+}
+
+div.histogram.column.landscape .bar {
   bottom:0;
   left:1px;
   right:1px;
-  border:1px solid rgba(255,255,255,0.7);
-  background-color:rgba(255,255,255,0.5);
+}
+
+div.histogram.column.portrait .bar {
+  top:1px;
+  bottom:0;
+}
+
+div.histogram.column.portrait.right .bar {
+  top:1px;
+  bottom:0;
+  right:0;
 }
