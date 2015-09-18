@@ -66,8 +66,4 @@ var SimpleHistogram = function(container, opts) {
   if (data)
     render(data);
 
-  console.log('inner width: ' + jQuery(container).innerWidth());
-  console.log('bins ' + NUMBER_OF_BINS);
-  console.log('bin width: ' + BIN_WIDTH);
-
 };
