@@ -13,8 +13,16 @@ A simple histogram component.
 <script src="simplehistogram.min.js"></script>
 <link rel="stylesheet" href="simplehistogram.css">
 <script>
+  // Data is an array of objects with an 'x' and a 'y' field
+  var data = [
+    { x: ..., y: ...},
+    { x: ..., y: ...}
+  ];
+
   jQuery(document).ready(function() {
-    var histogram = new SimpleHistogram(document.getElementById('histogram'));
+    var histogram = new SimpleHistogram(document.getElementById('histogram'), {
+      data: data
+    });
   });
 </script>
 ```
@@ -24,15 +32,11 @@ A simple histogram component.
 ```javascript
 jQuery(document).ready(function() {
   var histogram = new SimpleHistogram(document.getElementById('histogram'), {
+    data: data,
+    bins: 40, // number of bins
 
-    // TODO
+    // More to come
 
   });
 });
-```
-
-### API
-
-```javascript
-histogram.setData(/** TODO **/);
 ```

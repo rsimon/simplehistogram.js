@@ -2,6 +2,7 @@
   <head>
     <title>simplehistogram.js Demo</title>
     <link rel="stylesheet" href="simplehistogram.css">
+    <link rel="stylesheet" href="highlight.js/zenburn.css">
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.min.css" />
     <!--[if lt IE 9]>
       <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.ie.min.css" />
@@ -21,8 +22,22 @@
         width:600px;
         height:140px;
       }
+
+      #usage {
+        width:600px;
+        padding-top:30px;
+        text-align:left;
+        margin:0 auto;
+      }
+
+      #usage code {
+        padding:15px 20px;
+        border-radius:5px;
+      }
     </style>
+
     <script src="jquery/jquery-1.11.3.min.js"></script>
+    <script src="highlight.js/highlight.pack.js"></script>
     <script src="src/simplehistogram.js"></script>
     <script>
       var randomData = (function() {
@@ -39,6 +54,8 @@
           bins: 40
         });
       });
+
+      hljs.initHighlightingOnLoad();
     </script>
   </head>
 
@@ -49,5 +66,20 @@
       </div>
     </div>
     <div id="histogram"></div>
+
+    <div id="usage">
+      <pre><code>jQuery(document).ready(function() {
+
+  new SimpleHistogram(document.getElementById('histogram'), {
+
+    data: data, // array of objects { x: ..., y: ... }
+
+    bins: 40,   // number of bins
+
+    // More to come
+  });
+
+});</pre></code>
+    </div>
   </body>
 </html>
