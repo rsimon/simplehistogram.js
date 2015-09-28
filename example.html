@@ -76,12 +76,19 @@
     // Array of objects { x: ..., y: ... }
     data: data,
 
-    // Number of bars to display
+    // Number of bars to display (default: 20)
     bins: 40,
 
-    // OPTIONAL
     // 'bottom' (default) or 'left', 'right' for vertical alignment
-    align: 'bottom'
+    align: 'bottom',
+
+    // Set to true to scale bars logarithmically (default: false)
+    logScale: true,
+
+    // A formatter function to generate tooltip output
+    tooltip: function(fromX, toX, y) {
+      return y + ' results at ' + fromX;
+    }
 
   });
 
