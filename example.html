@@ -71,7 +71,7 @@
     <div id="usage">
       <pre><code>jQuery(document).ready(function() {
 
-  new SimpleHistogram(document.getElementById('histogram'), {
+  var histogram = new SimpleHistogram(document.getElementById('histogram'), {
 
     // Array of objects { x: ..., y: ... }
     data: data,
@@ -91,6 +91,15 @@
     }
 
   });
+
+  // Add event handlers like so:
+  histogram.on('click', function(fromX, toX, y) {
+
+    // ... do something
+
+    // supported events are 'click' and 'enterbar'
+
+  })
 
 });</pre></code>
     </div>
